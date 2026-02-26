@@ -14,13 +14,13 @@ Developer → git push → GitHub Actions (build image) → Docker Hub
             NLB + NGINX Ingress → Python App
 ```
 
-| Component         | URL / Details                                         |
-|-------------------|-------------------------------------------------------|
-| Application       | https://app.misha.devops10.test-danit.com             |
-| ArgoCD Dashboard  | https://argocd.misha.devops10.test-danit.com          |
-| Docker Hub Image  | `mishadevops206/my-python-server`                     |
-| AWS Region        | `eu-central-1`                                        |
-| EKS Cluster       | `misha` (1 node, t3.medium)                           |
+| Component        | URL / Details                                |
+| ---------------- | -------------------------------------------- |
+| Application      | https://app.misha.devops10.test-danit.com    |
+| ArgoCD Dashboard | https://argocd.misha.devops10.test-danit.com |
+| Docker Hub Image | `mishadevops206/my-python-server`            |
+| AWS Region       | `eu-central-1`                               |
+| EKS Cluster      | `misha` (1 node, t3.medium)                  |
 
 ## Project Structure
 
@@ -262,9 +262,6 @@ resource "aws_route53_record" "app" {
 
 ![Successful AWS CLI login](img/success-aws-login-cli-7.png)
 
-### Terraform Apply
-
-![Terraform apply completed successfully](img/success-terraform-apply-command-8.png)
 
 ### EKS Node Ready
 
@@ -424,12 +421,6 @@ spec:
 
 ![App working on app.misha.devops10.test-danit.com](img/we-can-see-out-pythonapp-work-inargo-on-correct-domain-13.png)
 
-### Pod Details in ArgoCD
-
-![Detailed pod information in ArgoCD](img/show-detail-info-of-pod-inargo-14.png)
-
----
-
 ## How It All Works Together
 
 1. **Developer pushes code** to the `main` branch on GitHub
@@ -441,14 +432,18 @@ spec:
 
 ## Infrastructure Details
 
-| Resource               | Configuration                          |
-|------------------------|----------------------------------------|
-| EKS Cluster            | `misha`, Kubernetes v1.34             |
-| Node Group             | 1x `t3.medium`                        |
-| Load Balancer          | AWS NLB (Network Load Balancer)        |
-| SSL Certificate        | AWS ACM, wildcard `*.misha.devops10.test-danit.com` |
-| DNS                    | Route53, zone `devops10.test-danit.com` |
-| Ingress Controller     | NGINX Ingress v4.10.0                  |
-| GitOps                 | ArgoCD v2.8.4 (Helm chart v5.46.7)    |
-| Container Registry     | Docker Hub                             |
-| Terraform State        | S3 bucket with encryption              |
+| Resource           | Configuration                                       |
+| ------------------ | --------------------------------------------------- |
+| EKS Cluster        | `misha`, Kubernetes v1.34                           |
+| Node Group         | 1x `t3.medium`                                      |
+| Load Balancer      | AWS NLB (Network Load Balancer)                     |
+| SSL Certificate    | AWS ACM, wildcard `*.misha.devops10.test-danit.com` |
+| DNS                | Route53, zone `devops10.test-danit.com`             |
+| Ingress Controller | NGINX Ingress v4.10.0                               |
+| GitOps             | ArgoCD v2.8.4 (Helm chart v5.46.7)                  |
+| Container Registry | Docker Hub                                          |
+| Terraform State    | S3 bucket with encryption                       |
+
+### Overview Diagram
+
+![App working on app.misha.devops10.test-danit.com](img/project-overview.png)
